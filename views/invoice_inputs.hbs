@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Invoice</title>
+    <link rel="stylesheet" href="/product_update.css">
+</head>
+
+<body>
+    <div id="container">
+        <h1 class="h1">Input Invoice</h1>
+        <form action="/input_invoice" method="post" id="box" enctype="multipart/form-data">
+
+            <h2>Seller Details:</h2>
+            <p>Seller Name:</p>
+            <input type="text" name="SellerName" class="input" id="SellerName" required maxlength="40"
+                placeholder="Enter seller name">
+
+            {{!-- <p>Seller Address:</p>
+            <input type="text" name="SellerAddress" class="input" id="SellerAddress" required maxlength="200"
+                placeholder="Enter seller address">
+
+            <p>Seller City:</p>
+            <input type="text" name="SellerCity" class="input" id="SellerCity" required maxlength="20"
+                placeholder="Enter seller city">
+
+            <p>Seller State:</p>
+            <input type="text" name="SellerState" class="input" id="SellerState" required maxlength="20"
+                placeholder="Enter seller state">
+
+            <p>Seller Pincode:</p>
+            <input type="number" name="SellerPincode" class="input" id="SellerPincode" required min="100000"
+                max="999999" placeholder="Enter seller pincode">
+
+            <p>Seller PAN No:</p>
+            <input type="text" name="SellerPAN" class="input" id="SellerPAN" required minlength="10" maxlength="10"
+                placeholder="Enter seller PAN number ABCDE1234F format">
+
+            <p>Seller GST Registration No:</p>
+            <input type="text" name="SellerGST" class="input" id="SellerGST" required minlength="15" maxlength="15"
+                placeholder="Enter seller GST registration number 12ABCDE1234F5GH format">
+
+            <h2>Place of Supply</h2>
+            <p>Place of Supply:</p>
+            <input type="text" name="PlaceOfSupply" class="input" id="PlaceOfSupply" required
+                placeholder="Enter place of supply">
+
+            <h2>Billing Details:</h2>
+            <p>Billing Name:</p>
+            <input type="text" name="BillingName" class="input" id="BillingName" required maxlength="40"
+                placeholder="Enter billing name">
+
+            <p>Billing Address:</p>
+            <input type="text" name="BillingAddress" class="input" id="BillingAddress" required maxlength="200"
+                placeholder="Enter billing address">
+
+            <p>Billing City:</p>
+            <input type="text" name="BillingCity" class="input" id="BillingCity" required maxlength="20"
+                placeholder="Enter billing city">
+
+            <p>Billing State:</p>
+            <input type="text" name="BillingState" class="input" id="BillingState" required maxlength="20"
+                placeholder="Enter billing state">
+
+            <p>Billing Pincode:</p>
+            <input type="number" name="BillingPincode" class="input" id="BillingPincode" required min="100000"
+                max="999999" placeholder="Enter billing pincode">
+
+            <p>Billing State/UT Code:</p>
+            <input type="text" name="BillingStateCode" class="input" id="BillingStateCode" required maxlength="10"
+                placeholder="Enter billing state/UT code">
+
+            <h2>Shipping Details:</h2>
+            <input type="checkbox" id="same-details" onchange="toggleBillingDetails()"> Same as billing details
+            <p>Shipping Name:</p>
+            <input type="text" name="ShippingName" class="input" id="ShippingName" required maxlength="40"
+                placeholder="Enter shipping name">
+
+            <p>Shipping Address:</p>
+            <input type="text" name="ShippingAddress" class="input" id="ShippingAddress" required maxlength="200"
+                placeholder="Enter shipping address">
+
+            <p>Shipping City:</p>
+            <input type="text" name="ShippingCity" class="input" id="ShippingCity" required maxlength="20"
+                placeholder="Enter shipping city">
+
+            <p>Shipping State:</p>
+            <input type="text" name="ShippingState" class="input" id="ShippingState" required maxlength="20"
+                placeholder="Enter shipping state">
+
+            <p>Shipping Pincode:</p>
+            <input type="number" name="ShippingPincode" class="input" id="ShippingPincode" required min="100000"
+                max="999999" placeholder="Enter shipping pincode">
+
+            <p>Shipping State/UT Code:</p>
+            <input type="text" name="ShippingStateCode" class="input" id="ShippingStateCode" required maxlength="10"
+                placeholder="Enter shipping state/UT code">
+
+            <h2>Place of Delivery</h2>
+            <input type="checkbox" id="same-address" onchange="togglePlaceSupply()"> Same as place of supply
+            <p>Place of Delivery:</p>
+            <input type="text" name="PlaceOfDelivery" class="input" id="PlaceOfDelivery" required
+                placeholder="Enter place of delivery">
+
+            <h2>Order Details:</h2>
+            <p>Order No.:</p>
+            <input type="text" name="OrderNo" class="input" id="OrderNo" required maxlength="20"
+                placeholder="Enter order number">
+
+            <p>Order Date:</p>
+            <input type="date" name="OrderDate" class="input" id="OrderDate" required>
+
+            <h2>Invoice Details:</h2>
+            <p>Invoice No.:</p>
+            <input type="text" name="InvoiceNo" class="input" id="InvoiceNo" required maxlength="20"
+                placeholder="Enter invoice number">
+
+            <p>Invoice Details:</p>
+            <input type="text" name="InvoiceDetails" class="input" id="InvoiceDetails" required maxlength="200"
+                placeholder="Enter invoice details">
+
+            <p>Invoice Date:</p>
+            <input type="date" name="InvoiceDate" class="input" id="InvoiceDate" required>
+
+            <h2>Reverse Charge:</h2>
+            <p>Reverse Charge:</p>
+            <select name="ReverseCharge" class="input" id="ReverseCharge" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <h2>Item Details:</h2>
+            <div id="itemContainer">
+                <div class="item-details">
+                    <h3>Item 1</h3>
+                    <p>Description:</p>
+                    <input type="text" name="Items[0][Description]" class="input" required
+                        placeholder="Enter item description">
+
+                    <p>Unit Price:</p>
+                    <input type="number" name="Items[0][UnitPrice]" class="input" required
+                        placeholder="Enter unit price">
+
+                    <p>Quantity:</p>
+                    <input type="number" name="Items[0][Quantity]" class="input" required placeholder="Enter quantity">
+
+                    <p>Discount:</p>
+                    <input type="number" name="Items[0][Discount]" class="input" required placeholder="Enter discount">
+
+                    <p>Tax Rate:</p>
+                    <input type="number" name="Items[0][TaxRate]" class="input" value="18" required
+                        placeholder="Enter tax rate">
+                </div>
+            </div>
+            <button type="button" onclick="addItem()">Add Item</button> --}}
+
+            <h2>Signature Image:</h2>
+            <p>Upload Signature Image:</p>
+            <input type="file" name="SignatureImage" class="input" id="SignatureImage" required>
+
+            <input type="submit" id="submit" value="Add product">
+        </form>
+
+        <script>
+            let itemCount = 1;
+            let index = 0;
+
+            function addItem() {
+                itemCount++;
+                index++;
+                const itemContainer = document.getElementById('itemContainer');
+                const newItem = document.createElement('div');
+                newItem.classList.add('item-details');
+                newItem.innerHTML = `
+                <h3>Item ${itemCount}</h3>
+                <p>Description:</p>
+                <input type="text" name="Items[${index}][Description]" class="input" required placeholder="Enter item description">
+
+                <p>Unit Price:</p>
+                <input type="number" name="Items[${index}][UnitPrice]" class="input" required placeholder="Enter unit price">
+
+                <p>Quantity:</p>
+                <input type="number" name="Items[${index}][Quantity]" class="input" required placeholder="Enter quantity">
+
+                <p>Discount:</p>
+                <input type="number" name="Items[${index}][Discount]" class="input" required placeholder="Enter discount">
+
+                <p>Tax Rate:</p>
+                <input type="number" name="Items[${index}][TaxRate]" class="input" value="18" required placeholder="Enter tax rate">
+            `;
+                itemContainer.appendChild(newItem);
+            }
+
+
+            function toggleBillingDetails() {
+                if (document.getElementById('same-details').checked) {
+                    document.getElementById("ShippingName").value = document.getElementById("BillingName").value;
+                    document.getElementById("ShippingAddress").value = document.getElementById("BillingAddress").value;
+                    document.getElementById("ShippingCity").value = document.getElementById("BillingCity").value;
+                    document.getElementById("ShippingState").value = document.getElementById("BillingState").value;
+                    document.getElementById("ShippingPincode").value = document.getElementById("BillingPincode").value;
+                    document.getElementById("ShippingStateCode").value = document.getElementById("BillingStateCode").value;
+                } else {
+                    document.getElementById("ShippingName").value = "";
+                    document.getElementById("ShippingAddress").value = "";
+                    document.getElementById("ShippingCity").value = "";
+                    document.getElementById("ShippingState").value = "";
+                    document.getElementById("ShippingPincode").value = "";
+                    document.getElementById("ShippingStateCode").value = "";
+                }
+            }
+
+
+            function togglePlaceSupply(){
+                if (document.getElementById('same-address').checked) {
+                    document.getElementById("PlaceOfDelivery").value = document.getElementById("PlaceOfSupply").value;
+                } else {
+                    document.getElementById("PlaceOfDelivery").value = "";
+                }
+            }
+        </script>
+
+</body>
+
+
+
+</html>
