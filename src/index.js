@@ -43,7 +43,21 @@ const storage = multer.diskStorage({
 })
 
 // const upload=multer({dest:"uploads/"});
-const upload = multer({ storage });
+// const upload = multer({ storage });
+const upload = multer({
+    storage,
+    limits: { fileSize: 1024 * 1024 * 5 }, // Limit file size to 5MB
+    fileFilter: (req, file, cb) => {
+        const filetypes = /jpeg|jpg|png/;
+        const mimetype = filetypes.test(file.mimetype);
+        const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+
+        if (mimetype && extname) {
+            return cb(null, true);
+        }
+        cb(new Error("Only .png, .jpg and .jpeg format allowed!"));
+    }
+});
 
 // app.use(flash());
 
